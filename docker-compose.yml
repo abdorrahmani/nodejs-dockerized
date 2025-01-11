@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      REDIS_URL: redis://redis:6379
+      MONGO_URL: mongodb://mongo:27017
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
