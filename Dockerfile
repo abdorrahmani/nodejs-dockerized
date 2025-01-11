@@ -8,4 +8,5 @@ FROM node:22
 WORKDIR /app
 COPY --from=builder /app /app
 EXPOSE 3000
-CMD ["node", "app.js"]
+
+CMD ["npm", "run", "dev"]

@@ -9,8 +9,12 @@ services:
       - redis
       - mongo
     environment:
+      NODE_ENV: development
       REDIS_URL: redis://redis:6379
       MONGO_URL: mongodb://mongo:27017
+    volumes:
+      - .:/app
+      - /app/node_modules
   redis:
     image: redis:7
     ports:
