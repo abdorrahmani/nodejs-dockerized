@@ -8,7 +8,7 @@
   "keywords": [],
   "author": "abdorrahmani",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "description": "Node.js+Express.js+Redis+MongoDB+Docker",
   "dependencies": {
     "express": "^4.21.2",

@@ -1,11 +1,11 @@
-const express = require('express');
-const redis = require('redis');
-const { MongoClient } = require('mongodb');
+import { createClient } from 'redis';
+import {MongoClient} from "mongodb";
+import express from "express"
 
 const app = express();
 const port = 3000;
 
-const redisClient = redis.createClient({ url: 'redis://redis:6379' });
+const redisClient = createClient({ url: 'redis://redis:6379' });
 redisClient.on('error', (err) => console.error('Redis Error:', err));
 
 const mongoUrl = 'mongodb://mongo:27017';
