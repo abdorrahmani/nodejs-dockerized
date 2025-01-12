@@ -4,22 +4,35 @@ services:
     build:
       context: .
     ports:
-      - "3000:3000"
+      - "${APP_PORT}:${APP_PORT}"
     depends_on:
       - redis
       - mongo
     environment:
       NODE_ENV: development
-      REDIS_URL: redis://redis:6379
-      MONGO_URL: mongodb://mongo:27017
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_USERNAME: ${REDIS_USERNAME}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_DB: ${REDIS_DB}
+      MONGO_HOST: ${MONGO_HOST}
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_DB: ${MONGO_DB}
     volumes:
       - .:/app
       - /app/node_modules
   redis:
     image: redis:7
     ports:
-      - "6379:6379"
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: [ "redis-server", "--requirepass", "${REDIS_PASSWORD}" ]
+
   mongo:
     image: mongo:6
     ports:
-      - "27017:27017"
+      - "${MONGO_PORT}:${MONGO_PORT}"
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+        MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
