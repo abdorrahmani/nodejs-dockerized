@@ -5,7 +5,6 @@
 [![Docker](https://img.shields.io/badge/Docker-%23ffffff.svg?logo=docker&logoColor=2496ED)](https://www.docker.com/)
 [![Redis](https://img.shields.io/badge/Redis-v7-red?logo=redis)](https://redis.io/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-v6-green?logo=mongodb)](https://www.mongodb.com/)
-![License](https://img.shields.io/github/license/abdorrahmani/nodejs-dockerized-app)
 [![Website](https://img.shields.io/badge/Website-Online-brightgreen?style=flat&logo=google-chrome)](https://anophel.com)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
 
@@ -41,12 +40,27 @@ cd nodejs-dockerized-app
 
 ### 2. Environment Variables
 
-Ensure the following environment variables are set in `docker-compose.yml`:
+Ensure the following environment variables are set in `.env`:
 
 ```yaml
-environment:
-  REDIS_URL: redis://redis:6379
-  MONGO_URL: mongodb://mongo:27017
+# Application settings
+APP_NAME=NodejsDockerizedApp
+APP_PORT=3000
+
+  # Redis settings
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_USERNAME=default
+REDIS_PASSWORD=redispassword
+REDIS_DB=0
+
+  # MongoDB settings
+MONGO_HOST=mongo
+MONGO_PORT=27017
+MONGO_USERNAME=mongouser
+MONGO_PASSWORD=mongopassword
+MONGO_DB=appdatabase
+
 ```
 
 ### 3. Run the App
@@ -90,6 +104,8 @@ nodejs-dockerized-app/
 ├── app.js                 # Main application logic
 ├── Dockerfile             # Docker image configuration
 ├── docker-compose.yml     # Docker Compose configuration
+├── .env                   # Environment variables
+├── .env.example           # Example Environment variables
 ├── nodemon.json           # Nodemon configuration
 ├── package.json           # Node.js project metadata
 └── README.md              # Project documentation
@@ -123,15 +139,7 @@ nodejs-dockerized-app/
 ```bash
 docker logs <container_name>
 ```
-
 ---
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 ## Contributing
 
 Contributions are welcome! Please submit a pull request or open an issue if you find bugs or have suggestions.
